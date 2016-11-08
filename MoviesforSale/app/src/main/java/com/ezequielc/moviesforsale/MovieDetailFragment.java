@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 
 
@@ -31,10 +32,6 @@ public class MovieDetailFragment extends Fragment {
 
         int selectedMovieId = getArguments().getInt("selected_movie", -1);
 
-//        if (selectedMovieId == -1){
-//            getActivity().getSupportFragment
-//        }
-
         Movies selectedMovie = MovieSQLHelper.getInstance(getContext())
                 .getMoviesById(selectedMovieId);
 
@@ -45,12 +42,15 @@ public class MovieDetailFragment extends Fragment {
         TextView yearRelease = (TextView) view.findViewById(R.id.movie_release);
         TextView price = (TextView) view.findViewById(R.id.movie_price);
 
-        // name.setText(selectedMovie.getName());
         name.setText(String.format(Locale.getDefault(), "Name: %s", selectedMovie.getName()));
-        director.setText(selectedMovie.getDirector());
-        genre.setText(selectedMovie.getGenre());
-        runTime.setText(selectedMovie.getLength());
-        yearRelease.setText(selectedMovie.getYearReleased());
-        //price.setText(selectedMovie.getPrice());
+        director.setText(String.format(Locale.getDefault(), "Director: %s", selectedMovie.getDirector()));
+        genre.setText(String.format(Locale.getDefault(), "Genre: %s", selectedMovie.getGenre()));
+        runTime.setText(String.format(Locale.getDefault(), "Run Time: %d minutes", selectedMovie.getLength()));
+        yearRelease.setText(String.format(Locale.getDefault(), "Year Released: %d", selectedMovie.getYearReleased()));
+
+        // Set Prices in Currency Format (Price: %)
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        double priceValue = Double.valueOf(selectedMovie.getPrice());
+        price.setText(currencyFormat.format(priceValue));
     }
 }

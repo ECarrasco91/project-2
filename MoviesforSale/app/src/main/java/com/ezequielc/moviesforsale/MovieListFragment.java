@@ -49,6 +49,6 @@ public class MovieListFragment extends Fragment {
                 getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new MovieAdapter(moviesList));
+        recyclerView.setAdapter(new MovieAdapter(moviesList, mListener));
     }
 }
