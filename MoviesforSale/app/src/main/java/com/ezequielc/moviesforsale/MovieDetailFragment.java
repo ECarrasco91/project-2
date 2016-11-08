@@ -1,6 +1,7 @@
 package com.ezequielc.moviesforsale;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,5 +53,11 @@ public class MovieDetailFragment extends Fragment {
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.getDefault());
         double priceValue = Double.valueOf(selectedMovie.getPrice());
         price.setText(currencyFormat.format(priceValue));
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
     }
 }
