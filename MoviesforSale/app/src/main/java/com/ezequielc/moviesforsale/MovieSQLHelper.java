@@ -66,8 +66,13 @@ public class MovieSQLHelper extends SQLiteOpenHelper {
     // Query Database
     public List<Movies> getMovieList(){
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.query(TABLE_NAME,
-                null, null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, // Table
+                null, // Column Names
+                null, // Selections
+                null, // Selections Args
+                null, // Having
+                null, // Order by
+                null); // Limit
 
         List<Movies> movieList = new ArrayList<>();
 
@@ -91,14 +96,14 @@ public class MovieSQLHelper extends SQLiteOpenHelper {
     public Movies getMoviesById(int id){
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_NAME, // a. table
-                MOVIE_COLUMNS, // b. column names
-                COL_ID + " = ?", // c. selections
-                new String[]{String.valueOf(id)}, // d. selections args
-                null, // e. group by
-                null, // f. having
-                null, // g. order by
-                null); // h. limit
+        Cursor cursor = db.query(TABLE_NAME, // Table
+                MOVIE_COLUMNS, // Column Names
+                COL_ID + " = ?", // Selections
+                new String[]{String.valueOf(id)}, // Selections Args
+                null, // Group by
+                null, // Having
+                null, // Order by
+                null); // Limit
 
         if (cursor.moveToFirst()){
             String name  = cursor.getString(cursor.getColumnIndex(COL_NAME));
@@ -114,5 +119,39 @@ public class MovieSQLHelper extends SQLiteOpenHelper {
             cursor.close();
             return null;
         }
+    }
+
+    // Search for Movies Name or Genre
+    public List<Movies> searchThroughMovies(String query){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, // Table
+                null, // Column Names
+                COL_NAME + " LIKE ? OR " + COL_GENRE + " LIKE ?", // Selections
+                new String[]{"%"+query+"%", "%"+query+"%"}, // Selection Args
+                null, // Group by
+                null, // Having
+                null, // Order by
+                null); // Limit
+
+        List<Movies> searchedMovies = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+                int id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+                String name = cursor.getString(cursor.getColumnIndex(COL_NAME));
+                String director = cursor.getString(cursor.getColumnIndex(COL_DIRECTOR));
+                String genre = cursor.getString(cursor.getColumnIndex(COL_GENRE));
+                int runTime = cursor.getInt(cursor.getColumnIndex(COL_RUN_TIME));
+                int yearRelease = cursor.getInt(cursor.getColumnIndex(COL_YEAR_RELEASE));
+                float price = cursor.getFloat(cursor.getColumnIndex(COL_PRICE));
+
+                searchedMovies.add(new Movies(id, name, director, genre, runTime, yearRelease, price));
+
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return searchedMovies;
     }
 }

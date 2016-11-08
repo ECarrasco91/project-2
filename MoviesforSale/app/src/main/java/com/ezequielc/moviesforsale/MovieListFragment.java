@@ -13,6 +13,7 @@ import java.util.List;
 
 public class MovieListFragment extends Fragment {
     private OnMovieSelectedListener mListener;
+    private MovieAdapter mMovieAdapter;
 
     public MovieListFragment() {
         // Required empty public constructor
@@ -49,6 +50,11 @@ public class MovieListFragment extends Fragment {
                 getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new MovieAdapter(moviesList, mListener));
+        mMovieAdapter = new MovieAdapter(moviesList, mListener);
+        recyclerView.setAdapter(mMovieAdapter);
+    }
+
+    public void searchResults(List<Movies> movies){
+        mMovieAdapter.replaceData(movies);
     }
 }
