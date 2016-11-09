@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -33,7 +35,7 @@ public class MovieDetailFragment extends Fragment {
 
         int selectedMovieId = getArguments().getInt("selected_movie", -1);
 
-        Movies selectedMovie = MovieSQLHelper.getInstance(getContext())
+        final Movies selectedMovie = MovieSQLHelper.getInstance(getContext())
                 .getMoviesById(selectedMovieId);
 
         TextView name = (TextView) view.findViewById(R.id.movie_name);
@@ -42,6 +44,7 @@ public class MovieDetailFragment extends Fragment {
         TextView runTime = (TextView) view.findViewById(R.id.movie_run_time);
         TextView yearRelease = (TextView) view.findViewById(R.id.movie_release);
         TextView price = (TextView) view.findViewById(R.id.movie_price);
+        Button addButton = (Button) view.findViewById(R.id.add_to_cart_button);
 
         name.setText(String.format(Locale.getDefault(), "Name: %s", selectedMovie.getName()));
         director.setText(String.format(Locale.getDefault(), "Director: %s", selectedMovie.getDirector()));
@@ -53,6 +56,15 @@ public class MovieDetailFragment extends Fragment {
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.getDefault());
         double priceValue = Double.valueOf(selectedMovie.getPrice());
         price.setText(currencyFormat.format(priceValue));
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShoppingCart.getInstance().addMovie(selectedMovie);
+                Toast.makeText(getContext(), "Movie added to Shopping Cart",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

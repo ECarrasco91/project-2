@@ -7,4 +7,10 @@
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item
+        android:id="@+id/shopping_cart"
+        android:title="Shopping Cart"
+        android:icon="@android:drawable/ic_menu_save"
+        app:showAsAction="always"/>
 </menu>

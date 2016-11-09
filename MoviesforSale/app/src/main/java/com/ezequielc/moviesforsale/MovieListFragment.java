@@ -3,6 +3,7 @@ package com.ezequielc.moviesforsale;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -67,6 +68,19 @@ public class MovieListFragment extends Fragment {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.search:
+                return true;
+            case R.id.shopping_cart:
+                Intent intent = new Intent(getContext(), ShoppingCartActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     public static Fragment newInstance(Bundle bundle, OnMovieSelectedListener listener) {
         MovieListFragment fragment = new MovieListFragment();
