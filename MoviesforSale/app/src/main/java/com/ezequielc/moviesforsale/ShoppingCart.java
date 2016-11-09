@@ -30,4 +30,8 @@ public class ShoppingCart {
     public void removeMovie(Movies movie){
         movies.remove(movie);
     }
+
+    public void clearShoppingCart(){
+        movies.clear();
+    }
 }

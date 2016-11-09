@@ -11,13 +11,12 @@ import android.widget.TextView;
 
 public class ShoppingCartViewHolder extends RecyclerView.ViewHolder {
     public TextView mMovieShoppingList;
-    public Button mRemoveButton, mCheckoutButton;
+    public Button mRemoveButton;
 
     public ShoppingCartViewHolder(View itemView) {
         super(itemView);
 
         mMovieShoppingList = (TextView) itemView.findViewById(R.id.shopping_list);
         mRemoveButton = (Button) itemView.findViewById(R.id.remove_button);
-        mCheckoutButton = (Button) itemView.findViewById(R.id.checkout_button);
     }
 }

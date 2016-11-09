@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,13 +28,16 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartViewHo
     @Override
     public void onBindViewHolder(ShoppingCartViewHolder holder, final int position) {
         holder.mMovieShoppingList.setText(mListOfMovies.get(position).getName());
+
         holder.mRemoveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ShoppingCart.getInstance().removeMovie(mListOfMovies.get(position));
+                Toast.makeText(view.getContext(), "Movie Removed",
+                        Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
             }
         });
-
     }
 
     @Override

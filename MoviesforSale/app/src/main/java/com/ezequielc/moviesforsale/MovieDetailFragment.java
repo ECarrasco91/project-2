@@ -52,7 +52,7 @@ public class MovieDetailFragment extends Fragment {
         runTime.setText(String.format(Locale.getDefault(), "Run Time: %d minutes", selectedMovie.getLength()));
         yearRelease.setText(String.format(Locale.getDefault(), "Year Released: %d", selectedMovie.getYearReleased()));
 
-        // Set Prices in Currency Format (Price: %)
+        // Set Prices in Currency Format
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.getDefault());
         double priceValue = Double.valueOf(selectedMovie.getPrice());
         price.setText(currencyFormat.format(priceValue));
@@ -61,8 +61,7 @@ public class MovieDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ShoppingCart.getInstance().addMovie(selectedMovie);
-                Toast.makeText(getContext(), "Movie added to Shopping Cart",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Movie added to Shopping Cart", Toast.LENGTH_SHORT).show();
             }
         });
     }
