@@ -27,13 +27,15 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartViewHo
 
     @Override
     public void onBindViewHolder(ShoppingCartViewHolder holder, final int position) {
-        holder.mMovieShoppingList.setText(mListOfMovies.get(position).getName());
 
+        final Movies positionOfMovie = mListOfMovies.get(position);
+
+        holder.mMovieShoppingList.setText(positionOfMovie.getName());
         holder.mRemoveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShoppingCart.getInstance().removeMovie(mListOfMovies.get(position));
-                Toast.makeText(view.getContext(), "Movie Removed",
+                ShoppingCart.getInstance().removeMovie(positionOfMovie);
+                Toast.makeText(view.getContext(), positionOfMovie.getName()+" Removed",
                         Toast.LENGTH_SHORT).show();
                 notifyDataSetChanged();
             }

@@ -1,16 +1,19 @@
 package com.ezequielc.moviesforsale;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShoppingCartActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ShoppingCartAdapter mAdapter;
+    private TextView mTotal;
     private Button mCheckout;
 
     @Override
@@ -19,6 +22,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_cart);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.shopping_cart_recyclerview);
+        mTotal = (TextView) findViewById(R.id.display_total);
         mCheckout = (Button) findViewById(R.id.checkout_button);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
@@ -28,13 +32,16 @@ public class ShoppingCartActivity extends AppCompatActivity {
         mAdapter = new ShoppingCartAdapter(ShoppingCart.getInstance().getMovies());
         mRecyclerView.setAdapter(mAdapter);
 
+        // Display Total...
+
         mCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ShoppingCart.getInstance().clearShoppingCart();
                 Toast.makeText(ShoppingCartActivity.this, "Purchase Completed!",
                         Toast.LENGTH_SHORT).show();
-                mAdapter.notifyDataSetChanged();
+                Intent intent = new Intent(ShoppingCartActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

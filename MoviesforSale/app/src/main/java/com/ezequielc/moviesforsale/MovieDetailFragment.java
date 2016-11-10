@@ -61,7 +61,7 @@ public class MovieDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ShoppingCart.getInstance().addMovie(selectedMovie);
-                Toast.makeText(getContext(), "Movie added to Shopping Cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), selectedMovie.getName()+" added to Shopping Cart", Toast.LENGTH_SHORT).show();
             }
         });
     }

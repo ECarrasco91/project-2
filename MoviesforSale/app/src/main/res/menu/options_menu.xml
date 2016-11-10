@@ -11,6 +11,6 @@
     <item
         android:id="@+id/shopping_cart"
         android:title="Shopping Cart"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_local_grocery_store_black_24dp"
         app:showAsAction="always"/>
 </menu>
