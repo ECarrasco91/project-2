@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
         DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
         dbSetup.getReadableDatabase();
 
+        // Adding MovieListFragment to the MainActivity
         Fragment movieListFragment = MovieListFragment.newInstance(null, MainActivity.this);
         getSupportFragmentManager()
                 .beginTransaction()
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
         handleIntent(getIntent());
     }
 
+    // Once a Movie is clicked on Replaces Fragment with MovieDetailFragment
     @Override
     public void onMovieSelected(int id) {
         Bundle bundle =  new Bundle();

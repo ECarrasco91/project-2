@@ -34,4 +34,12 @@ public class ShoppingCart {
     public void clearShoppingCart(){
         movies.clear();
     }
+
+    public float getTotal(){
+        float total = 0;
+        for (int i = 0; i < movies.size(); i++) {
+            float priceOfMovie = movies.get(i).getPrice();
+            total += priceOfMovie;
+        } return total;
+    }
 }

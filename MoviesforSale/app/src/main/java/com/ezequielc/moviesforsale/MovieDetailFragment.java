@@ -35,6 +35,7 @@ public class MovieDetailFragment extends Fragment {
 
         int selectedMovieId = getArguments().getInt("selected_movie", -1);
 
+        // Calls method getMoviesById() from MovieSQLHelper
         final Movies selectedMovie = MovieSQLHelper.getInstance(getContext())
                 .getMoviesById(selectedMovieId);
 
@@ -46,6 +47,7 @@ public class MovieDetailFragment extends Fragment {
         TextView price = (TextView) view.findViewById(R.id.movie_price);
         Button addButton = (Button) view.findViewById(R.id.add_to_cart_button);
 
+        // Sets text onto TextViews defined above with the following format
         name.setText(String.format(Locale.getDefault(), "Name: %s", selectedMovie.getName()));
         director.setText(String.format(Locale.getDefault(), "Director: %s", selectedMovie.getDirector()));
         genre.setText(String.format(Locale.getDefault(), "Genre: %s", selectedMovie.getGenre()));
@@ -60,7 +62,10 @@ public class MovieDetailFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Adds Movie to the Shopping Cart
                 ShoppingCart.getInstance().addMovie(selectedMovie);
+
+                // Specifies which Movie has been added to the Shopping Cart
                 Toast.makeText(getContext(), selectedMovie.getName()+" added to Shopping Cart", Toast.LENGTH_SHORT).show();
             }
         });

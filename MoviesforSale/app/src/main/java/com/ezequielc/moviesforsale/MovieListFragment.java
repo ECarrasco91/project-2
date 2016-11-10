@@ -74,6 +74,7 @@ public class MovieListFragment extends Fragment {
             case R.id.search:
                 return true;
             case R.id.shopping_cart:
+                // Goes to the Shopping Cart Activity
                 Intent intent = new Intent(getContext(), ShoppingCartActivity.class);
                 startActivity(intent);
                 return true;
@@ -113,6 +114,7 @@ public class MovieListFragment extends Fragment {
         recyclerView.setAdapter(mMovieAdapter);
     }
 
+    // Changes List of Movies Displayed upon Search
     public void searchResults(List<Movies> movies){
         mMovieAdapter.replaceData(movies);
     }

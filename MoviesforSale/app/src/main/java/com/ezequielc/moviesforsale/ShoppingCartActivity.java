@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ShoppingCartActivity extends AppCompatActivity {
+public class ShoppingCartActivity extends AppCompatActivity
+        implements ShoppingCartAdapter.OnMovieRemovedListener {
     private RecyclerView mRecyclerView;
     private ShoppingCartAdapter mAdapter;
     private TextView mTotal;
@@ -29,21 +30,37 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        mAdapter = new ShoppingCartAdapter(ShoppingCart.getInstance().getMovies());
+        mAdapter = new ShoppingCartAdapter(ShoppingCart.getInstance().getMovies(), this);
         mRecyclerView.setAdapter(mAdapter);
 
-        // Display Total...
+        displayTotal();
 
         mCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Clears Movies from the Shopping Cart
                 ShoppingCart.getInstance().clearShoppingCart();
                 Toast.makeText(ShoppingCartActivity.this, "Purchase Completed!",
                         Toast.LENGTH_SHORT).show();
+
+                // Goes to the MainActivity
                 Intent intent = new Intent(ShoppingCartActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    // Displays Total
+    public void displayTotal(){
+        float floatTotal = ShoppingCart.getInstance().getTotal();
+        String stringTotal = Float.valueOf(floatTotal).toString();
+        mTotal.setText("Total: $"+stringTotal);
+    }
+
+    @Override
+    public void onMovieRemoved() {
+        // Updates Total when a Movie is Removed
+        displayTotal();
     }
 }

@@ -43,6 +43,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         return mMoviesList.size();
     }
 
+    // Changes List of Movies Displayed upon Search
     public void replaceData(List<Movies> searchedList){
         mMoviesList = searchedList;
         notifyDataSetChanged();
