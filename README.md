@@ -17,5 +17,5 @@
 
 **Sreenshots**
 <p align="center">
-  <img src="Screenshot_1478805566.png" height="300px" /> <img src="Screenshot_1478805599.png" height="300px" /> <img src="Screenshot_1478805626.png" height="300px" />
+  <img src="screenshots/Screenshot_1478805566.png" height="300px" /> <img src="screenshots/Screenshot_1478805599.png" height="300px" /> <img src="screenshots/Screenshot_1478805626.png" height="300px" />
 </p>
