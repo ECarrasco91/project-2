@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.ezequielc.moviesforsale.MovieDetailFragment">
 
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:background="@android:color/holo_red_dark"
+        android:layout_gravity="center"/>
+
     <TextView
         android:id="@+id/movie_name"
         android:layout_width="match_parent"
