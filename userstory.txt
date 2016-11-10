@@ -1,0 +1,33 @@
+App: Movies For Sale
+
+- - Main Menu Test Case - -
+
+Conditional Statements:
+The user can view a list of movies with images
+The user can click on the name of a movie to view extra details
+The user can add movies to the shopping cart
+The user can search for movies by entering the name or genre
+The user can go to the shopping cart by clicking on the icon
+
+User Stories:
+As a user, I can view a list of movies with images
+As a user, I can click on the name of a movie to view extra details
+As a user, I can add movies to the shopping cart
+As a user, I can search for movies by entering the name or genre
+As a user, I can go to the shopping cart by clicking on the icon
+
+- - Shopping Cart Test Cast - -
+
+Conditional Statements:
+The user can view a list of movies added to the shopping cart
+The user can remove movies from the shopping cart
+The user can view an accumulated total of movies in the shopping cart
+The user can view a change in total when a Movie is removed
+The user checkout from the shopping cart
+
+As a user, I can view a list of movies added to the shopping cart
+As a user, I can remove movies from the shopping cart
+As a user, I can view an accumulated total of movies in the shopping cart
+As a user, I can view a change in total when a Movie is removed
+As a user, I can checkout from the shopping cart
+
