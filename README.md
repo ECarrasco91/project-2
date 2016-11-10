@@ -15,7 +15,7 @@
 - Pressing the back arrow in a SearchView crashes the app
 - The total displayed in the shopping cart can sometimes generate more than 2 numbers after the decimal point.
 
-**Sreenshots**
+**Screenshots**
 <p align="center">
   <img src="screenshots/Screenshot_1478805566.png" height="300px" /> <img src="screenshots/Screenshot_1478805599.png" height="300px" /> <img src="screenshots/Screenshot_1478805626.png" height="300px" />
 </p>
